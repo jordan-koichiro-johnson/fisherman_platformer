@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c1jbrwv516fys"]
+
+[ext_resource type="Texture2D" uid="uid://ir6t7gqr2k58" path="res://assets/images/Items/fishing line.png" id="1_8ce8k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0octi"]
+radius = 1.0
+height = 16.0
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1185189271]
+
+[node name="FishingLine" type="Sprite2D" parent="." unique_id=1627457289]
+texture_filter = 1
+position = Vector2(0.5, 0.49999964)
+scale = Vector2(0.9791667, 0.43749997)
+texture = ExtResource("1_8ce8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1987647620]
+shape = SubResource("CapsuleShape2D_0octi")
+disabled = true
