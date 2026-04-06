@@ -14,7 +14,8 @@ func _ready() -> void:
 
 func update_trajectory(delta):
 	# making trajectory line for throw
-	throw_power = throw_power + 5
+	if throw_power < 1000:
+		throw_power = throw_power + 5
 	var max_points = 300
 	clear_points()
 	var pos = player.global_position

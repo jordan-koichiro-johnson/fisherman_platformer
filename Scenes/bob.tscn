@@ -44,7 +44,9 @@ bias = 0.9
 position = Vector2(0, 220)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D" index="1" unique_id=1987647620]
@@ -61,7 +63,9 @@ bias = 0.9
 position = Vector2(0, 206)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="FishingLine" parent="RigidBody2D2" index="0" unique_id=1627457289]
@@ -82,7 +86,9 @@ bias = 0.9
 position = Vector2(0, 192)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="FishingLine" parent="RigidBody2D3" index="0" unique_id=1627457289]
@@ -101,7 +107,9 @@ bias = 0.9
 position = Vector2(0, 178)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D4" index="1" unique_id=1987647620]
@@ -117,7 +125,9 @@ bias = 0.9
 position = Vector2(0, 164)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D5" index="1" unique_id=1987647620]
@@ -133,7 +143,9 @@ bias = 0.9
 position = Vector2(0, 150)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="FishingLine" parent="RigidBody2D6" index="0" unique_id=1627457289]
@@ -154,7 +166,9 @@ bias = 0.9
 position = Vector2(0, 136)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D7" index="1" unique_id=1987647620]
@@ -170,7 +184,9 @@ bias = 0.9
 position = Vector2(0, 122)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D8" index="1" unique_id=1987647620]
@@ -186,7 +202,9 @@ bias = 0.9
 position = Vector2(0, 106)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D9" index="1" unique_id=1987647620]
@@ -202,7 +220,9 @@ bias = 0.9
 position = Vector2(0, 92)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="FishingLine" parent="RigidBody2D10" index="0" unique_id=1627457289]
@@ -223,7 +243,9 @@ bias = 0.9
 position = Vector2(0, 78)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D11" index="1" unique_id=1987647620]
@@ -239,7 +261,9 @@ bias = 0.9
 position = Vector2(0, 64)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D12" index="1" unique_id=1987647620]
@@ -255,7 +279,9 @@ bias = 0.9
 position = Vector2(0, 50)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D13" index="1" unique_id=1987647620]
@@ -271,7 +297,9 @@ bias = 0.9
 position = Vector2(0, 36)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="FishingLine" parent="RigidBody2D14" index="0" unique_id=1627457289]
@@ -292,7 +320,9 @@ bias = 0.9
 position = Vector2(0, 22)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D15" index="1" unique_id=1987647620]
@@ -308,7 +338,9 @@ bias = 0.9
 position = Vector2(0, 8)
 collision_layer = 4
 collision_mask = 16
-mass = 0.419
+mass = 25.0
+gravity_scale = 0.5
+linear_damp = 0.15
 script = ExtResource("4_5lbyi")
 
 [node name="CollisionShape2D" parent="RigidBody2D16" index="1" unique_id=1987647620]
