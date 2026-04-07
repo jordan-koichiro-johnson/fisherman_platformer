@@ -69,31 +69,31 @@ func throw():
 	ball.apply_impulse(Vector2(face * SPEED,-100))
 	thrown = 2
 
-func addNode():
-	var new_RigidBody2d = RigidBody2D.new()
-	var new_PinJoint2d = PinJoint2D.new()
-	var new_Sprite2d = Sprite2D.new()
-	var new_CollisionShape2d = CollisionShape2D.new()
-	var childrenArr = line_and_sinker.get_children()
-	var Capsule = CapsuleShape2D.new()
-	
-	print(childrenArr[1], childrenArr[0])
-	new_RigidBody2d.name = "createdbody"
-	new_PinJoint2d.name = "createdpinjoint"
-	new_Sprite2d.texture = load("res://assets/images/Items/fishing line.png")
-	new_Sprite2d.scale = Vector2(0.979, 0.438)
-	Capsule.radius = 1
-	Capsule.height = 16
-	new_CollisionShape2d.shape = Capsule
-	new_RigidBody2d.add_child(new_Sprite2d)
-	new_RigidBody2d.add_child(new_CollisionShape2d)
-	line_and_sinker.add_child(new_PinJoint2d)
-	line_and_sinker.add_child(new_RigidBody2d)
-	new_PinJoint2d.set_node_a(childrenArr[0].get_path())
-	new_PinJoint2d.set_node_b(new_RigidBody2d.get_path())
-	childrenArr[1].set_node_a(new_RigidBody2d.get_path())
-	line_and_sinker.move_child(line_and_sinker.get_child(-2), 1)
-	line_and_sinker.move_child(line_and_sinker.get_child(-1), 2)
+#func addNode():
+	#var new_RigidBody2d = RigidBody2D.new()
+	#var new_PinJoint2d = PinJoint2D.new()
+	#var new_Sprite2d = Sprite2D.new()
+	#var new_CollisionShape2d = CollisionShape2D.new()
+	#var childrenArr = line_and_sinker.get_children()
+	#var Capsule = CapsuleShape2D.new()
+	#
+	#print(childrenArr[1], childrenArr[0])
+	#new_RigidBody2d.name = "createdbody"
+	#new_PinJoint2d.name = "createdpinjoint"
+	#new_Sprite2d.texture = load("res://assets/images/Items/fishing line.png")
+	#new_Sprite2d.scale = Vector2(0.979, 0.438)
+	#Capsule.radius = 1
+	#Capsule.height = 16
+	#new_CollisionShape2d.shape = Capsule
+	#new_RigidBody2d.add_child(new_Sprite2d)
+	#new_RigidBody2d.add_child(new_CollisionShape2d)
+	#line_and_sinker.add_child(new_PinJoint2d)
+	#line_and_sinker.add_child(new_RigidBody2d)
+	#new_PinJoint2d.set_node_a(childrenArr[0].get_path())
+	#new_PinJoint2d.set_node_b(new_RigidBody2d.get_path())
+	#childrenArr[1].set_node_a(new_RigidBody2d.get_path())
+	#line_and_sinker.move_child(line_and_sinker.get_child(-2), 1)
+	#line_and_sinker.move_child(line_and_sinker.get_child(-1), 2)
 
 
 
@@ -114,7 +114,6 @@ func throwNakedBall():
 
 	new_RigidBody2d.apply_impulse(Vector2(1000, -1000))
 	print(new_CollisionShape2d.get_shape())
-	print(player.get_child(1).get_shape())
 
 func reel():
 	var ball = line_and_sinker.get_children()
@@ -129,10 +128,11 @@ func reel():
 func _input(event):
 	if event.is_action_pressed("throwNakedBall"):
 		throwNakedBall()
-	if event.is_action_pressed(("addNode")) and thrown == 1:
-		addNode()
+	#if event.is_action_pressed(("addNode")) and thrown == 1:
+		#addNode()
 	if event.is_action_pressed("throw") and thrown == 0:
 		line_and_sinker = set_for_throw()
+		print("length in plyaer", line_2d.length)
 	elif event.is_action_pressed("throw") and thrown == 1:
 		throw()
 	elif event.is_action_pressed("throw") and thrown == 2:

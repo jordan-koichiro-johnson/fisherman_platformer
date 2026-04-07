@@ -12,5 +12,5 @@ var velocity : Vector2
 #func _ready():
 	#apply_impulse(velocity)
 
-func _physics_process(delta):
-	move_and_collide(velocity)
+#func _physics_process(delta):
+	#move_and_collide(velocity)
