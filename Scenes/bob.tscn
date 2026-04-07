@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://c1m6g7gmilp6i"]
 
+[ext_resource type="Script" uid="uid://duqcn7rs7itc3" path="res://Scenes/WholeRope.gd" id="1_7xwq3"]
 [ext_resource type="Texture2D" uid="uid://blo825ne00lq6" path="res://assets/images/Items/fishing bob.png" id="1_p2bht"]
+[ext_resource type="Texture2D" uid="uid://ir6t7gqr2k58" path="res://assets/images/Items/fishing line.png" id="2_7xwq3"]
 [ext_resource type="Script" uid="uid://b7dwxer1lcqq4" path="res://Scripts/bob.gd" id="2_muioc"]
 [ext_resource type="PackedScene" uid="uid://c1jbrwv516fys" path="res://Scenes/ropesegment.tscn" id="3_gfr4g"]
-[ext_resource type="Script" uid="uid://cxcigh4u1ibd6" path="res://Scripts/rope.gd" id="4_5lbyi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_muioc"]
 radius = 3.0
@@ -12,14 +13,18 @@ radius = 3.0
 radius = 1.0
 height = 16.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5lbyi"]
-load_path = "res://.godot/imported/fishing line.png-07667eb79b1b2dd1aebc858063a3a54a.ctex"
-
 [node name="Bob" type="Node2D" unique_id=1081837656]
 texture_filter = 1
+script = ExtResource("1_7xwq3")
 metadata/_edit_horizontal_guides_ = [-79.0]
 
+[node name="Line2D" type="Line2D" parent="." unique_id=1102439915]
+points = PackedVector2Array(364, 20)
+texture = ExtResource("2_7xwq3")
+texture_mode = 1
+
 [node name="bob" type="RigidBody2D" parent="." unique_id=287189493]
+visible = false
 position = Vector2(-1, 224)
 collision_layer = 8
 collision_mask = 8
@@ -34,336 +39,30 @@ texture = ExtResource("1_p2bht")
 position = Vector2(1, 3)
 shape = SubResource("CircleShape2D_muioc")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=1728948019]
-position = Vector2(0, 227)
-node_a = NodePath("../bob")
-node_b = NodePath("../RigidBody2D")
-bias = 0.9
-
-[node name="RigidBody2D" parent="." unique_id=1185189271 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 220)
+[node name="RopeStart" parent="." unique_id=1185189271 instance=ExtResource("3_gfr4g")]
+position = Vector2(208, 48)
 collision_layer = 4
 collision_mask = 16
 mass = 25.0
 gravity_scale = 0.5
+freeze = true
 linear_damp = 0.15
-script = ExtResource("4_5lbyi")
 
-[node name="CollisionShape2D" parent="RigidBody2D" index="1" unique_id=1987647620]
+[node name="CollisionShape2D" parent="RopeStart" index="1" unique_id=1987647620]
 shape = SubResource("CapsuleShape2D_5lbyi")
 disabled = false
 
-[node name="PinJoint2D2" type="PinJoint2D" parent="." unique_id=1743969587]
-position = Vector2(0, 213)
-node_a = NodePath("../RigidBody2D")
-node_b = NodePath("../RigidBody2D2")
-bias = 0.9
-
-[node name="RigidBody2D2" parent="." unique_id=1186095966 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 206)
+[node name="RopeEnd" parent="." unique_id=962088055 instance=ExtResource("3_gfr4g")]
+position = Vector2(210, 229)
 collision_layer = 4
 collision_mask = 16
 mass = 25.0
 gravity_scale = 0.5
 linear_damp = 0.15
-script = ExtResource("4_5lbyi")
 
-[node name="FishingLine" parent="RigidBody2D2" index="0" unique_id=1627457289]
-position = Vector2(-8.46386e-06, 1.0000128)
-scale = Vector2(0.97891676, 0.43750012)
-offset = Vector2(0.495, -1.28)
-
-[node name="CollisionShape2D" parent="RigidBody2D2" index="1" unique_id=1987647620]
+[node name="CollisionShape2D" parent="RopeEnd" index="1" unique_id=1987647620]
+shape = SubResource("CapsuleShape2D_5lbyi")
 disabled = false
 
-[node name="PinJoint2D3" type="PinJoint2D" parent="." unique_id=650913000]
-position = Vector2(0, 199)
-node_a = NodePath("../RigidBody2D2")
-node_b = NodePath("../RigidBody2D3")
-bias = 0.9
-
-[node name="RigidBody2D3" parent="." unique_id=280534971 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 192)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="FishingLine" parent="RigidBody2D3" index="0" unique_id=1627457289]
-texture = SubResource("CompressedTexture2D_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D3" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D4" type="PinJoint2D" parent="." unique_id=747761758]
-position = Vector2(0, 185)
-node_a = NodePath("../RigidBody2D3")
-node_b = NodePath("../RigidBody2D4")
-bias = 0.9
-
-[node name="RigidBody2D4" parent="." unique_id=47744024 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 178)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D4" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D5" type="PinJoint2D" parent="." unique_id=532385270 groups=["bob_pin_joint"]]
-position = Vector2(0, 171)
-node_a = NodePath("../RigidBody2D4")
-node_b = NodePath("../RigidBody2D5")
-bias = 0.9
-
-[node name="RigidBody2D5" parent="." unique_id=924621485 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 164)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D5" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D6" type="PinJoint2D" parent="." unique_id=1744883421]
-position = Vector2(0, 157)
-node_a = NodePath("../RigidBody2D5")
-node_b = NodePath("../RigidBody2D6")
-bias = 0.9
-
-[node name="RigidBody2D6" parent="." unique_id=515012760 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 150)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="FishingLine" parent="RigidBody2D6" index="0" unique_id=1627457289]
-position = Vector2(-8.46386e-06, 1.0000128)
-scale = Vector2(0.97891676, 0.43750012)
-offset = Vector2(0.495, -1.28)
-
-[node name="CollisionShape2D" parent="RigidBody2D6" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D7" type="PinJoint2D" parent="." unique_id=1097401928]
-position = Vector2(0, 143)
-node_a = NodePath("../RigidBody2D6")
-node_b = NodePath("../RigidBody2D7")
-bias = 0.9
-
-[node name="RigidBody2D7" parent="." unique_id=1285343647 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 136)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D7" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D8" type="PinJoint2D" parent="." unique_id=594487536]
-position = Vector2(0, 129)
-node_a = NodePath("../RigidBody2D7")
-node_b = NodePath("../RigidBody2D8")
-bias = 0.9
-
-[node name="RigidBody2D8" parent="." unique_id=1732702717 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 122)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D8" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D9" type="PinJoint2D" parent="." unique_id=584549336 groups=["bob_pin_joint"]]
-position = Vector2(0, 115)
-node_a = NodePath("../RigidBody2D8")
-node_b = NodePath("../RigidBody2D9")
-bias = 0.9
-
-[node name="RigidBody2D9" parent="." unique_id=858121027 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 106)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D9" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D11" type="PinJoint2D" parent="." unique_id=569653425]
-position = Vector2(0, 99)
-node_a = NodePath("../RigidBody2D9")
-node_b = NodePath("../RigidBody2D10")
-bias = 0.9
-
-[node name="RigidBody2D10" parent="." unique_id=76453482 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 92)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="FishingLine" parent="RigidBody2D10" index="0" unique_id=1627457289]
-position = Vector2(-8.46386e-06, 1.0000128)
-scale = Vector2(0.97891676, 0.43750012)
-offset = Vector2(0.495, -1.28)
-
-[node name="CollisionShape2D" parent="RigidBody2D10" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D12" type="PinJoint2D" parent="." unique_id=1426986296]
-position = Vector2(0, 85)
-node_a = NodePath("../RigidBody2D10")
-node_b = NodePath("../RigidBody2D11")
-bias = 0.9
-
-[node name="RigidBody2D11" parent="." unique_id=957802179 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 78)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D11" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D13" type="PinJoint2D" parent="." unique_id=487284892]
-position = Vector2(0, 71)
-node_a = NodePath("../RigidBody2D11")
-node_b = NodePath("../RigidBody2D12")
-bias = 0.9
-
-[node name="RigidBody2D12" parent="." unique_id=1040173854 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 64)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D12" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D14" type="PinJoint2D" parent="." unique_id=544327884 groups=["bob_pin_joint"]]
-position = Vector2(0, 57)
-node_a = NodePath("../RigidBody2D12")
-node_b = NodePath("../RigidBody2D13")
-bias = 0.9
-
-[node name="RigidBody2D13" parent="." unique_id=633856723 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 50)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D13" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D15" type="PinJoint2D" parent="." unique_id=652867037]
-position = Vector2(0, 43)
-node_a = NodePath("../RigidBody2D13")
-node_b = NodePath("../RigidBody2D14")
-bias = 0.9
-
-[node name="RigidBody2D14" parent="." unique_id=182406895 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 36)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="FishingLine" parent="RigidBody2D14" index="0" unique_id=1627457289]
-position = Vector2(-8.46386e-06, 1.0000128)
-scale = Vector2(0.97891676, 0.43750012)
-offset = Vector2(0.495, -1.28)
-
-[node name="CollisionShape2D" parent="RigidBody2D14" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D16" type="PinJoint2D" parent="." unique_id=734299341]
-position = Vector2(0, 29)
-node_a = NodePath("../RigidBody2D14")
-node_b = NodePath("../RigidBody2D15")
-bias = 0.9
-
-[node name="RigidBody2D15" parent="." unique_id=2018607733 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 22)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D15" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D17" type="PinJoint2D" parent="." unique_id=894895222]
-position = Vector2(0, 15)
-node_a = NodePath("../RigidBody2D15")
-node_b = NodePath("../RigidBody2D16")
-bias = 0.9
-
-[node name="RigidBody2D16" parent="." unique_id=2000259240 instance=ExtResource("3_gfr4g")]
-position = Vector2(0, 8)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-script = ExtResource("4_5lbyi")
-
-[node name="CollisionShape2D" parent="RigidBody2D16" index="1" unique_id=1987647620]
-disabled = false
-
-[node name="PinJoint2D18" type="PinJoint2D" parent="." unique_id=811637953 groups=["bob_pin_joint"]]
-position = Vector2(0, 1)
-node_a = NodePath("../RigidBody2D16")
-bias = 0.9
-
-[editable path="RigidBody2D"]
-[editable path="RigidBody2D2"]
-[editable path="RigidBody2D3"]
-[editable path="RigidBody2D4"]
-[editable path="RigidBody2D5"]
-[editable path="RigidBody2D6"]
-[editable path="RigidBody2D7"]
-[editable path="RigidBody2D8"]
-[editable path="RigidBody2D9"]
-[editable path="RigidBody2D10"]
-[editable path="RigidBody2D11"]
-[editable path="RigidBody2D12"]
-[editable path="RigidBody2D13"]
-[editable path="RigidBody2D14"]
-[editable path="RigidBody2D15"]
-[editable path="RigidBody2D16"]
+[editable path="RopeStart"]
+[editable path="RopeEnd"]
