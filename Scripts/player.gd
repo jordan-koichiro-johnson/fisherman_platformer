@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var thrown = 0
 @onready var line_and_sinker: Node2D
 @onready var face: int #1 is right -1 is left
-@onready var line_2d: Line2D = $"../Line2D"
+@onready var line_2d: Line2D = $"../raycast"
 @onready var max_points = 250
 @onready var static_body_2d: StaticBody2D = $"../StaticBody2D"
 const SPEED = 300.0
@@ -41,33 +41,37 @@ func _physics_process(delta: float) -> void:
 
 func set_for_throw():
 	var instance = bob.instantiate()
-	var rodOffsetFromPlayer = Vector2(-47, -30)
-	instance.position = player.position + rodOffsetFromPlayer * Vector2(face,1)
-	if main.get_child(3):
-		main.get_child(3).free()
 	main.add_child(instance)
-	var ball_and_rope = instance.get_children()
-	var x = 0
-	for i in ball_and_rope:
-		if i is PinJoint2D and x < ball_and_rope.size()-1:
-			var path_a = i.get_parent().get_child(x-1).get_path()
-			var path_b = i.get_parent().get_child(x+1).get_path()
-			i.set_node_a(path_a)
-			i.set_node_b(path_b)
-		elif i is PinJoint2D:
-			var path_a = i.get_parent().get_child(x-1).get_path()
-			i.set_node_a(path_a)
-			i.set_node_b("/root/main/Player/Line")
-		x = x+1
+	#var rodOffsetFromPlayer = Vector2(-47, -30)
+	#instance.position = player.position + rodOffsetFromPlayer * Vector2(face,1)
+	#if main.get_child(3):
+		#main.get_child(3).free()
+	#main.add_child(instance)
+	#var ball_and_rope = instance.get_children()
+	#var x = 0
+	#for i in ball_and_rope:
+		#if i is PinJoint2D and x < ball_and_rope.size()-1:
+			#var path_a = i.get_parent().get_child(x-1).get_path()
+			#var path_b = i.get_parent().get_child(x+1).get_path()
+			#i.set_node_a(path_a)
+			#i.set_node_b(path_b)
+		#elif i is PinJoint2D:
+			#var path_a = i.get_parent().get_child(x-1).get_path()
+			#i.set_node_a(path_a)
+			#i.set_node_b("/root/main/Player/Line")
+		#x = x+1
 	thrown = 1
 	return instance
 
-func throw():
-	print("length",line_2d.length)
-	var ball = line_and_sinker.find_child("bob")
-	print(ball)
-	ball.apply_impulse(Vector2(face * SPEED,-100))
+
+func throw(instance):
+	
+	
+	#var ball = line_and_sinker.find_child("bob")
+	#print(ball)
+	#ball.apply_impulse(Vector2(face * SPEED,-100))
 	thrown = 2
+	
 
 #func addNode():
 	#var new_RigidBody2d = RigidBody2D.new()
@@ -113,14 +117,16 @@ func throwNakedBall():
 	new_RigidBody2d.add_child(new_CollisionShape2d)
 
 	new_RigidBody2d.apply_impulse(Vector2(1000, -1000))
-	print(new_CollisionShape2d.get_shape())
+	#print(new_CollisionShape2d.get_shape())
 
 func reel():
-	var ball = line_and_sinker.get_children()
-	for i in ball:
-		print(i.get('velocity'))
-		if i.get('velocity'):
-			i.velocity = Vector2(0,0)
+	#var ball = line_and_sinker.get_children()
+	#for i in ball:
+		#print(i.get('velocity'))
+		#if i.get('velocity'):
+			#i.velocity = Vector2(0,0)
+	#if main.get_child(3):
+		#main.get_child(3).free()
 	if main.get_child(3):
 		main.get_child(3).free()
 	thrown = 0
@@ -131,10 +137,13 @@ func _input(event):
 	#if event.is_action_pressed(("addNode")) and thrown == 1:
 		#addNode()
 	if event.is_action_pressed("throw") and thrown == 0:
+		
 		line_and_sinker = set_for_throw()
-		print("length in plyaer", line_2d.length)
+		thrown = 1
+		#print("length in plyaer", line_2d.length)
 	elif event.is_action_pressed("throw") and thrown == 1:
-		throw()
+		thrown = 2
+		throw(line_and_sinker)
 	elif event.is_action_pressed("throw") and thrown == 2:
 		reel()
 #creating pull request

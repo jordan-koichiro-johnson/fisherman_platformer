@@ -19,16 +19,17 @@ script = ExtResource("1_7xwq3")
 metadata/_edit_horizontal_guides_ = [-79.0]
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1102439915]
+texture_repeat = 2
 points = PackedVector2Array(364, 20)
 texture = ExtResource("2_7xwq3")
 texture_mode = 1
 
 [node name="bob" type="RigidBody2D" parent="." unique_id=287189493]
-visible = false
-position = Vector2(-1, 224)
+position = Vector2(212, 209)
 collision_layer = 8
 collision_mask = 8
 mass = 0.001
+linear_damp = 31.663
 script = ExtResource("2_muioc")
 
 [node name="Sprite2D" type="Sprite2D" parent="bob" unique_id=855457042]
@@ -38,6 +39,8 @@ texture = ExtResource("1_p2bht")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bob" unique_id=1781538647]
 position = Vector2(1, 3)
 shape = SubResource("CircleShape2D_muioc")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="bob" unique_id=1533345829]
 
 [node name="RopeStart" parent="." unique_id=1185189271 instance=ExtResource("3_gfr4g")]
 position = Vector2(208, 48)
@@ -53,7 +56,7 @@ shape = SubResource("CapsuleShape2D_5lbyi")
 disabled = false
 
 [node name="RopeEnd" parent="." unique_id=962088055 instance=ExtResource("3_gfr4g")]
-position = Vector2(210, 229)
+position = Vector2(419, 184)
 collision_layer = 4
 collision_mask = 16
 mass = 25.0

@@ -9,7 +9,6 @@ extends Line2D
 const SPEED = 300
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("line")
 	pass # Replace with function body.
 
 func update_trajectory(delta):

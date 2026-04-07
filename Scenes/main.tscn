@@ -131,7 +131,7 @@ texture = ExtResource("2_bo1nx")
 position = Vector2(483, 467.75)
 shape = SubResource("RectangleShape2D_bo1nx")
 
-[node name="Line2D" type="Line2D" parent="." unique_id=1554652225]
+[node name="raycast" type="Line2D" parent="." unique_id=1554652225]
 scale = Vector2(0.99999964, 0.99999964)
 width = 15.0
 default_color = Color(0.8818452, 0.44791913, 0.8439906, 1)
