@@ -1,17 +1,17 @@
 extends Node2D
 @onready var Bob: Node2D = $"."
 @onready var IntervalScaleFactor = 0.03
-@onready var rope_start: RigidBody2D = $RopeStart
+@onready var rope_start: StaticBody2D = $"/root/main/Player/Line"
 @onready var rope_end: RigidBody2D = $bob
 @onready var packed_scene = load("res://Scenes/ropesegment.tscn")
-@onready var start_pin_joint: PinJoint2D = $RopeStart/PinJoint2D
-@onready var end_pin_joint: PinJoint2D = $bob/PinJoint2D
+@onready var start_pin_joint: PinJoint2D = $"/root/main/Player/Line/PinJoint2D"
+@onready var end_pin_joint: PinJoint2D = $RopeEnd/PinJoint2D
 @onready var rope_points_line: Array
 @onready var line_2d: Line2D = $Line2D
 @onready var rope_segments: Array
 @onready var raycast: Line2D = $"../raycast"
 @onready var rope_spawned = false
-@onready var player: CharacterBody2D = $Player
+@onready var player: CharacterBody2D = $"/root/main/Player"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +19,8 @@ func _ready() -> void:
 	pass
 
 func spawnRope():
-	var rope_starting_position = player.get_child(1).global_position
+	print(player)
+	var rope_starting_position = player.get_child(2).get_child(0).global_position
 	var rope_ending_position = player.global_position
 	print(raycast.length)
 	var distance = raycast.length

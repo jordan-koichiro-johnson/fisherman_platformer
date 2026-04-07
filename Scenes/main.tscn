@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dnfxjsmik1h5s" path="res://icon.svg" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://cobcxnqor6vdb" path="res://Scripts/player.gd" id="5_6bp64"]
 [ext_resource type="Script" uid="uid://7p5o7dmhfklb" path="res://Scenes/line_2d.gd" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://c0k1jw4yv211x" path="res://Scenes/line.gd" id="6_21xkr"]
 [ext_resource type="Texture2D" uid="uid://qi3yhgus17te" path="res://assets/images/player/fisherman run.png" id="6_344ge"]
 [ext_resource type="Texture2D" uid="uid://o2j13cxswudb" path="res://assets/images/player/fisherman idle.png" id="7_ynf5e"]
 
@@ -161,7 +162,11 @@ position = Vector2(0.1000061, 3.8146973e-06)
 scale = Vector2(0.09999997, 0.09999997)
 collision_layer = 8
 collision_mask = 8
+script = ExtResource("6_21xkr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Line" unique_id=1862040263]
 position = Vector2(-47.00001, -29.000008)
 shape = SubResource("CircleShape2D_jjvhh")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Player/Line" unique_id=497344837]
+node_a = NodePath("..")
