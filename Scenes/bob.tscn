@@ -1,17 +1,7 @@
 [gd_scene format=3 uid="uid://c1m6g7gmilp6i"]
 
-[ext_resource type="Script" uid="uid://duqcn7rs7itc3" path="res://Scenes/WholeRope.gd" id="1_7xwq3"]
-[ext_resource type="Texture2D" uid="uid://blo825ne00lq6" path="res://assets/images/Items/fishing bob.png" id="1_p2bht"]
+[ext_resource type="Script" uid="uid://duqcn7rs7itc3" path="res://WholeRope.gd" id="1_7xwq3"]
 [ext_resource type="Texture2D" uid="uid://ir6t7gqr2k58" path="res://assets/images/Items/fishing line.png" id="2_7xwq3"]
-[ext_resource type="Script" uid="uid://b7dwxer1lcqq4" path="res://Scripts/bob.gd" id="2_muioc"]
-[ext_resource type="PackedScene" uid="uid://c1jbrwv516fys" path="res://Scenes/ropesegment.tscn" id="3_gfr4g"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_muioc"]
-radius = 3.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5lbyi"]
-radius = 1.0
-height = 16.0
 
 [node name="Bob" type="Node2D" unique_id=1081837656]
 texture_filter = 1
@@ -19,53 +9,8 @@ script = ExtResource("1_7xwq3")
 metadata/_edit_horizontal_guides_ = [-79.0]
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1102439915]
+texture_filter = 1
 texture_repeat = 2
 points = PackedVector2Array(364, 20)
 texture = ExtResource("2_7xwq3")
 texture_mode = 1
-
-[node name="bob" type="RigidBody2D" parent="." unique_id=287189493]
-position = Vector2(212, 209)
-collision_layer = 8
-collision_mask = 8
-mass = 0.001
-linear_damp = 31.663
-script = ExtResource("2_muioc")
-
-[node name="Sprite2D" type="Sprite2D" parent="bob" unique_id=855457042]
-scale = Vector2(2, 2)
-texture = ExtResource("1_p2bht")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bob" unique_id=1781538647]
-position = Vector2(1, 3)
-shape = SubResource("CircleShape2D_muioc")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="bob" unique_id=1533345829]
-
-[node name="RopeStart" parent="." unique_id=1185189271 instance=ExtResource("3_gfr4g")]
-position = Vector2(208, 48)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-freeze = true
-linear_damp = 0.15
-
-[node name="CollisionShape2D" parent="RopeStart" index="1" unique_id=1987647620]
-shape = SubResource("CapsuleShape2D_5lbyi")
-disabled = false
-
-[node name="RopeEnd" parent="." unique_id=962088055 instance=ExtResource("3_gfr4g")]
-position = Vector2(419, 184)
-collision_layer = 4
-collision_mask = 16
-mass = 25.0
-gravity_scale = 0.5
-linear_damp = 0.15
-
-[node name="CollisionShape2D" parent="RopeEnd" index="1" unique_id=1987647620]
-shape = SubResource("CapsuleShape2D_5lbyi")
-disabled = false
-
-[editable path="RopeStart"]
-[editable path="RopeEnd"]

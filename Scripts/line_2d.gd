@@ -6,6 +6,7 @@ extends Line2D
 @onready var static_body_2d: StaticBody2D = $"../StaticBody2D"
 @onready var throw_power = 0
 @export var length: float
+@export var end_position: Vector2
 const SPEED = 300
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,6 +29,7 @@ func update_trajectory(delta):
 		pos += vel * delta
 		total_length += pos.distance_to(prev_pos)
 		if pos.y > collision_shape_2d.global_position.y:
+			end_position = pos
 			return(total_length)
 
 func _process(delta):

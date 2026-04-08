@@ -1,33 +1,35 @@
 extends Node2D
 @onready var Bob: Node2D = $"."
 @onready var IntervalScaleFactor = 0.03
-@onready var rope_start: StaticBody2D = $"/root/main/Player/Line"
-@onready var rope_end: RigidBody2D = $bob
 @onready var packed_scene = load("res://Scenes/ropesegment.tscn")
+@onready var packed_lure = load("res://Scenes/lure.tscn")
+@onready var rope_start: StaticBody2D = $"/root/main/Player/Line"
 @onready var start_pin_joint: PinJoint2D = $"/root/main/Player/Line/PinJoint2D"
-@onready var end_pin_joint: PinJoint2D = $RopeEnd/PinJoint2D
 @onready var rope_points_line: Array
 @onready var line_2d: Line2D = $Line2D
 @onready var rope_segments: Array
 @onready var raycast: Line2D = $"../raycast"
 @onready var rope_spawned = false
 @onready var player: CharacterBody2D = $"/root/main/Player"
-
+@onready var end_pin_joint
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
 func spawnRope():
-	print(player)
+	var rope_end_scene = packed_lure.instantiate()
+	var rope_end = rope_end_scene.get_child(0)
+	end_pin_joint = rope_end.find_child("PinJoint2D")
+	rope_end.global_position = raycast.end_position
 	var rope_starting_position = player.get_child(2).get_child(0).global_position
-	var rope_ending_position = player.global_position
-	print(raycast.length)
+	var rope_ending_position = rope_end.global_position
 	var distance = raycast.length
 	var base_interval = 10
 	var interval = base_interval +(distance * IntervalScaleFactor)
 	var direction = (rope_ending_position - rope_starting_position).normalized()
 	var number_of_segments = snapped(distance/interval, 1)
+	print('number of segs', number_of_segments)
 	var rotation_angle = direction.angle() - PI / 2
 	rope_start.IndexInArray = 0
 	var current_position = rope_starting_position
@@ -38,7 +40,6 @@ func spawnRope():
 		current_position += direction * interval
 		latest_segment = addRopeSegment(latest_segment, i+1, rotation_angle, current_position)
 		rope_segments.append(latest_segment)
-		
 		var joint_position = latest_segment.get_node("PinJoint2D").global_position
 		if joint_position.distance_to(rope_ending_position) < interval:
 			break
@@ -46,6 +47,12 @@ func spawnRope():
 	rope_end.rotation = rotation_angle
 	rope_segments.append(rope_end)
 	rope_end.IndexInArray = number_of_segments
+	rope_end.reparent(Bob)
+	var rope_end_joint = rope_end.find_child("PinJoint2D")
+	rope_end_joint.set_node_a(rope_segments[rope_end.IndexInArray - 1].get_path())
+	rope_end_joint.set_node_b(rope_end.get_path())
+	rope_end_joint.set_bias(0.99)
+	rope_end_joint.set_softness(0.003)
 
 func connectRopeParts(a, b):
 	var pinJoint = a.find_child("PinJoint2D")
@@ -58,8 +65,6 @@ func addRopeSegment(previous_segment, i, rotation_angle, position):
 	var segment = packed_scene.instantiate()
 	segment.global_position = position
 	segment.rotation = rotation_angle
-	
-
 	segment.IndexInArray = i
 	Bob.add_child(segment)
 	pinJoint.set_node_a(previous_segment.get_path())
@@ -84,4 +89,5 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	update_line_2d_rope()
+	if end_pin_joint:
+		update_line_2d_rope()

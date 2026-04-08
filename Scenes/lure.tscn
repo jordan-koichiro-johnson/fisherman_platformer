@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b3doq6af6hj4b"]
+
+[ext_resource type="Script" uid="uid://b7dwxer1lcqq4" path="res://Scripts/bob.gd" id="1_iip4x"]
+[ext_resource type="Texture2D" uid="uid://blo825ne00lq6" path="res://assets/images/Items/fishing bob.png" id="2_73n4f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4ay1"]
+radius = 3.0
+
+[node name="Lure" type="Node2D" unique_id=736574482]
+
+[node name="bob" type="RigidBody2D" parent="." unique_id=690901917]
+collision_layer = 8
+collision_mask = 9
+mass = 0.001
+linear_damp = 31.663
+script = ExtResource("1_iip4x")
+
+[node name="Sprite2D" type="Sprite2D" parent="bob" unique_id=155390174]
+scale = Vector2(2, 2)
+texture = ExtResource("2_73n4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bob" unique_id=506868261]
+position = Vector2(1, 3)
+shape = SubResource("CircleShape2D_k4ay1")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="bob" unique_id=1930511395]
