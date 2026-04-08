@@ -28,7 +28,7 @@ func update_trajectory(delta):
 		var prev_pos = pos
 		pos += vel * delta
 		total_length += pos.distance_to(prev_pos)
-		if pos.y > collision_shape_2d.global_position.y:
+		if pos.y > collision_shape_2d.global_position.y - 65:
 			end_position = pos
 			return(total_length)
 
