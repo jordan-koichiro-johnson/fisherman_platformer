@@ -2,25 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cxcigh4u1ibd6" path="res://Scripts/rope.gd" id="1_0octi"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ce8k"]
-load_path = "res://.godot/imported/fishing line.png-07667eb79b1b2dd1aebc858063a3a54a.ctex"
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0octi"]
 radius = 1.0
 height = 16.0
 
 [node name="RigidBody2D" type="RigidBody2D" unique_id=1185189271]
+collision_mask = 2
 mass = 61.558
 script = ExtResource("1_0octi")
 
-[node name="FishingLine" type="Sprite2D" parent="." unique_id=1627457289]
-texture_filter = 1
-position = Vector2(0.5, 0.49999964)
-scale = Vector2(0.9791667, 0.43749997)
-texture = SubResource("CompressedTexture2D_8ce8k")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1987647620]
 shape = SubResource("CapsuleShape2D_0octi")
-disabled = true
 
 [node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=610399811]

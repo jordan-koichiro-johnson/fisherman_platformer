@@ -7,11 +7,16 @@ extends RigidBody2D
 
 var dir : float
 var spawnPos : Vector2
-var velocity : Vector2
+var velocity : Vector2 = Vector2(100,100)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("throw"):
+		if get_parent().get_parent().find_child("Player").thrown == 1:
+			apply_impulse(velocity)
 
 #func _ready():
+	#print(velocity)
 	#apply_impulse(velocity)
 
-#func _physics_process(delta):
-	#move_and_collide(velocity)
+func _physics_process(delta):
+	move_and_collide(velocity)

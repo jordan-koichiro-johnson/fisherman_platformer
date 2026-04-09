@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var main: Node2D = $"../"
 @onready var bob = load("res://Scenes/bob.tscn")
 @onready var player: CharacterBody2D = $"."
-@onready var thrown = 0
+@export var thrown = 0
 @onready var line_and_sinker: Node2D
 @onready var face: int #1 is right -1 is left
 @onready var line_2d: Line2D = $"../raycast"
@@ -35,9 +35,6 @@ func _physics_process(delta: float) -> void:
 	elif direction == -1.0:
 		animated_sprite_2d.flip_h = true
 		face = -1
-	
-
-
 
 func set_for_throw():
 	var instance = bob.instantiate()
@@ -102,24 +99,25 @@ func throw(instance):
 
 
 
-func throwNakedBall():
-	var new_RigidBody2d = RigidBody2D.new()
-	var new_Sprite2d = Sprite2D.new()
-	var new_CollisionShape2d = CollisionShape2D.new()
-	var circle = CircleShape2D.new()
-	
-	circle.radius = 3
-	main.add_child(new_RigidBody2d)
-	new_Sprite2d.texture = load("res://assets/images/Items/fishing bob.png")
-	new_CollisionShape2d.shape = circle
-	new_RigidBody2d.global_position = player.global_position
-	new_RigidBody2d.add_child(new_Sprite2d)
-	new_RigidBody2d.add_child(new_CollisionShape2d)
-
-	new_RigidBody2d.apply_impulse(Vector2(1000, -1000))
+#func throwNakedBall():
+	#var new_RigidBody2d = RigidBody2D.new()
+	#var new_Sprite2d = Sprite2D.new()
+	#var new_CollisionShape2d = CollisionShape2D.new()
+	#var circle = CircleShape2D.new()
+	#
+	#circle.radius = 3
+	#main.add_child(new_RigidBody2d)
+	#new_Sprite2d.texture = load("res://assets/images/Items/fishing bob.png")
+	#new_CollisionShape2d.shape = circle
+	#new_RigidBody2d.global_position = player.global_position
+	#new_RigidBody2d.add_child(new_Sprite2d)
+	#new_RigidBody2d.add_child(new_CollisionShape2d)
+#
+	#new_RigidBody2d.apply_impulse(Vector2(1000, -1000))
 	#print(new_CollisionShape2d.get_shape())
 
 func reel():
+	print('reel')
 	#var ball = line_and_sinker.get_children()
 	#for i in ball:
 		#print(i.get('velocity'))
@@ -127,13 +125,13 @@ func reel():
 			#i.velocity = Vector2(0,0)
 	#if main.get_child(3):
 		#main.get_child(3).free()
-	if main.get_child(3):
-		main.get_child(3).free()
+	#if main.get_child(3):
+		#main.get_child(3).free()
 	thrown = 0
 
 func _input(event):
-	if event.is_action_pressed("throwNakedBall"):
-		throwNakedBall()
+	#if event.is_action_pressed("throwNakedBall"):
+#		throwNakedBall()
 	#if event.is_action_pressed(("addNode")) and thrown == 1:
 		#addNode()
 	if event.is_action_pressed("throw") and thrown == 0:

@@ -170,3 +170,5 @@ shape = SubResource("CircleShape2D_jjvhh")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Player/Line" unique_id=497344837]
 node_a = NodePath("..")
+bias = 0.9
+softness = 0.49

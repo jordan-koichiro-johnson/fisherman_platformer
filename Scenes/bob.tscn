@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1m6g7gmilp6i"]
 
 [ext_resource type="Script" uid="uid://duqcn7rs7itc3" path="res://WholeRope.gd" id="1_7xwq3"]
-[ext_resource type="Texture2D" uid="uid://ir6t7gqr2k58" path="res://assets/images/Items/fishing line.png" id="2_7xwq3"]
+[ext_resource type="Texture2D" uid="uid://bakxwbo37fstw" path="res://assets/images/Items/fishing line tiling.png" id="2_muioc"]
 
 [node name="Bob" type="Node2D" unique_id=1081837656]
 texture_filter = 1
@@ -11,6 +11,6 @@ metadata/_edit_horizontal_guides_ = [-79.0]
 [node name="Line2D" type="Line2D" parent="." unique_id=1102439915]
 texture_filter = 1
 texture_repeat = 2
-points = PackedVector2Array(364, 20)
-texture = ExtResource("2_7xwq3")
+width = 1.0
+texture = ExtResource("2_muioc")
 texture_mode = 1
