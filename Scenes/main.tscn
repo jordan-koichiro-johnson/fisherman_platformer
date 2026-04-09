@@ -139,7 +139,7 @@ default_color = Color(0.8818452, 0.44791913, 0.8439906, 1)
 script = ExtResource("5_kry3j")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=837675496]
-position = Vector2(563.99994, 323.99997)
+position = Vector2(562, 330)
 scale = Vector2(10, 10)
 collision_layer = 2
 collision_mask = 2
@@ -158,14 +158,13 @@ position = Vector2(6.8619847e-06, 3.4421682e-06)
 shape = SubResource("RectangleShape2D_6iyac")
 
 [node name="Line" type="StaticBody2D" parent="Player" unique_id=1854426136]
-position = Vector2(0.1000061, 3.8146973e-06)
+position = Vector2(-4.7, -2.8999991)
 scale = Vector2(0.09999997, 0.09999997)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("6_21xkr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Line" unique_id=1862040263]
-position = Vector2(-47.00001, -29.000008)
 shape = SubResource("CircleShape2D_jjvhh")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Player/Line" unique_id=497344837]
