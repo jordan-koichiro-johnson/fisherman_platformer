@@ -7,6 +7,7 @@ extends Line2D
 @onready var throw_power = 0
 @export var length: float
 @export var end_position: Vector2
+@export var make_raycast: bool = false
 const SPEED = 300
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,8 +35,8 @@ func update_trajectory(delta):
 			return
 
 func _process(delta):
-	if player.thrown == 1:
+	if make_raycast == true :
 		update_trajectory(delta)
-	elif player.thrown == 2:
+	elif make_raycast == false:
 		clear_points()
 		throw_power = 0

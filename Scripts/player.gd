@@ -3,8 +3,7 @@ extends CharacterBody2D
 @onready var main: Node2D = $"../"
 @onready var bob = load("res://Scenes/bob.tscn")
 @onready var player: CharacterBody2D = $"."
-@export var thrown = 0
-@onready var line_and_sinker: Node2D
+@export var thrown: bool = false
 @onready var face: int #1 is right -1 is left
 @onready var line_2d: Line2D = $"../raycast"
 @onready var max_points = 250
@@ -39,24 +38,28 @@ func _physics_process(delta: float) -> void:
 func set_for_throw():
 	var instance = bob.instantiate()
 	main.add_child(instance)
-	thrown = 1
-	return instance
+	thrown = true
+	line_2d.make_raycast = true
 
-
-func throw(instance):
-	thrown = 2
+func throw():
+	line_2d.make_raycast = false
 
 func reel():
-	if main.get_child(3):
-		main.get_child(3).free()
-	thrown = 0
+	if main.get_child(-1):
+		main.get_child(-1).queue_free()
+		#main.get_child(-1).rope_spawned = false
+
 
 func _input(event):
-	if event.is_action_pressed("throw") and thrown == 0:
-		line_and_sinker = set_for_throw()
-		thrown = 1
-	elif Input.is_action_just_released("throw") and thrown == 1:
-		throw(line_and_sinker)
-	elif event.is_action_pressed("throw") and thrown == 2:
+	if event.is_action_pressed("throw") and thrown == false:
+		set_for_throw()
+	elif Input.is_action_just_released("throw") and thrown == true:
+		throw()
+		print("Node a of Line PinJoint ",main.get_child(2).get_child(2).get_child(1).get_node_a())
+		print("Node b of Line PinJoint ",main.get_child(2).get_child(2).get_child(1).get_node_b())
+		print("children of the Bob node after adding all the rope segments ",main.get_child(3).get_children())
+		print("Node a of first segment PinJoint ",main.get_child(3).get_child(1).get_child(1).get_node_a())
+		print("Node b of first segment PinJoint ",main.get_child(3).get_child(1).get_child(1).get_node_b())
+	elif event.is_action_pressed("throw") and thrown == true:
 		reel()
-#creating pull request
+		thrown = false
