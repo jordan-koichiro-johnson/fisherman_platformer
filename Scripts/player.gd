@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var main: Node2D = $"../"
 @onready var bob = load("res://Scenes/bob.tscn")
+@onready var end_line = load("res://Scenes/lure.tscn")
 @onready var player: CharacterBody2D = $"."
 @export var thrown: bool = false
 @onready var face: int #1 is right -1 is left
@@ -36,6 +37,20 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.flip_h = true
 			face = -1
 
+func set_parabola():
+	line_2d.make_raycast = true
+
+func naked_throw():
+	var lure_node = get_node_or_null("/root/main/Lure/")
+	if lure_node != null:
+		get_node_or_null("/root/main/Lure/").free()
+	var instance = end_line.instantiate()
+	main.add_child(instance)
+	var ball = main.find_child("Lure").find_child("bob")
+	ball.global_position = player.global_position
+	ball.apply_impulse(line_2d.Velocity)
+	line_2d.make_raycast = false
+
 func set_for_throw():
 	var instance = bob.instantiate()
 	main.add_child(instance)
@@ -47,19 +62,19 @@ func throw():
 
 func reel():
 	main.get_child(-2).get_child(2).get_child(1).set_node_b('')
-	print(main.get_child(-2).get_child(2).get_child(1).get_node_b())
 	if main.get_child(-1):
 		main.get_child(-1).queue_free()
 		thrown = false
 
 
 func _input(event):
+	if event.is_action_pressed("throwNakedBall"):
+		set_parabola()
+	if Input.is_action_just_released("throwNakedBall"):
+		naked_throw()
 	if event.is_action_pressed("throw") and thrown == false:
 		set_for_throw()
-		
 	elif Input.is_action_just_released("throw") and thrown == true:
-
 		throw()
 	elif event.is_action_pressed("throw") and thrown == true:
-
 		reel()

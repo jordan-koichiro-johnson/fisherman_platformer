@@ -8,6 +8,7 @@ extends Line2D
 @export var length: float
 @export var end_position: Vector2
 @export var make_raycast: bool = false
+@export var Velocity: Vector2
 const SPEED = 300
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,7 @@ func update_trajectory(delta):
 	clear_points()
 	var pos = player.global_position
 	var vel = Vector2(SPEED + throw_power,-100 - throw_power)
+	Velocity = vel
 	var grav = player.get_gravity()
 	var total_length = 0.0
 	for i in max_points:

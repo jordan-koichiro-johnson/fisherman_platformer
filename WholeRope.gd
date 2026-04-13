@@ -25,9 +25,8 @@ func spawnRope():
 	end_pin_joint = rope_end.find_child("PinJoint2D")
 	rope_end.global_position = raycast.end_position #put bob at end of raycast
 	var rope_starting_position = player.get_child(2).get_child(0).global_position #set player position as start of rope
-	print(rope_starting_position)
 	var rope_ending_position = raycast.end_position
-	var distance = rope_ending_position.distance_to(rope_starting_position)
+	var distance = raycast.length
 	var base_interval = 5
 	var interval = base_interval +(distance * IntervalScaleFactor)
 	var direction = (rope_ending_position - rope_starting_position).normalized()
@@ -63,7 +62,6 @@ func connectRopeParts(a, b):
 
 func addRopeSegment(latest_segment, i, rotation_angle, pos):
 	var pinJoint = latest_segment.find_child("PinJoint2D")
-	print(latest_segment.get_children())
 	var segment = packed_scene.instantiate()
 	segment.global_position = pos
 	segment.rotation = rotation_angle
@@ -85,7 +83,6 @@ func update_line_2d_rope():
 
 func _input(event):
 	if Input.is_action_just_released("throw") and raycast.make_raycast == true:
-		print("spawn rope")
 		spawnRope()
 
 
