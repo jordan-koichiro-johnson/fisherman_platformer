@@ -2,7 +2,7 @@ extends Node2D
 @onready var Bob: Node2D = $"."
 @onready var IntervalScaleFactor = 0.03
 @onready var packed_scene = load("res://Scenes/ropesegment.tscn")
-@onready var packed_lure = load("res://Scenes/lure.tscn")
+#@onready var packed_lure = load("res://Scenes/lure.tscn")
 @onready var rope_start: StaticBody2D = $"/root/main/Player/Line"
 @onready var start_pin_joint: PinJoint2D = $"/root/main/Player/Line/PinJoint2D"
 @onready var rope_points_line: Array
@@ -19,14 +19,22 @@ func _ready() -> void:
 	pass
 
 func spawnRope():
-	var rope_end_scene = packed_lure.instantiate() #create the lure at the end of line
-	var rope_end = rope_end_scene.get_child(0) #set variable for the bob node
-	var rope_end_joint = rope_end.find_child("PinJoint2D") #set pinjoint variable
+	print("spawnrope")
+	print(get_parent().get_children())
+	print(get_children())
+	#var rope_end_scene = packed_lure.instantiate() #create the lure at the end of line
+	#var rope_end = rope_end_scene.get_child(0) #set variable for the bob node
+	#var rope_end_joint = rope_end.find_child("PinJoint2D") #set pinjoint variable
+	var rope_end = get_node("/root/main/Lure/bob")
+	print(rope_end)
+	var rope_end_joint = rope_end.find_child("PinJoint2D")
+	print(rope_end, rope_end_joint)
 	end_pin_joint = rope_end.find_child("PinJoint2D")
-	rope_end.global_position = raycast.end_position #put bob at end of raycast
+	#rope_end.global_position = raycast.end_position #put bob at end of raycast
 	var rope_starting_position = player.get_child(2).get_child(0).global_position #set player position as start of rope
-	var rope_ending_position = raycast.end_position
-	var distance = raycast.length
+	var rope_ending_position = rope_end.global_position
+	#var distance = raycast.length
+	var distance = player.global_position.distance_to(rope_end.global_position)
 	var base_interval = 5
 	var interval = base_interval +(distance * IntervalScaleFactor)
 	var direction = (rope_ending_position - rope_starting_position).normalized()
@@ -56,7 +64,7 @@ func spawnRope():
 	rope_spawned = true
 
 func connectRopeParts(a, b):
-	var pinJoint = a.find_child("PinJoint2D")
+	var pinJoint = a.find_child("PinJoint2D", true, false)
 	pinJoint.set_node_a(a.get_path())
 	pinJoint.set_node_b(b.get_path())
 
@@ -90,3 +98,4 @@ func _input(event):
 func _process(delta: float) -> void:
 	if rope_spawned == true:
 		update_line_2d_rope()
+	spawnRope()

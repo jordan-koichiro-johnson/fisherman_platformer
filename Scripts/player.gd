@@ -38,15 +38,21 @@ func _physics_process(delta: float) -> void:
 			face = -1
 
 func set_parabola():
+
 	line_2d.make_raycast = true
 
 func naked_throw():
 	var lure_node = get_node_or_null("/root/main/Lure/")
 	if lure_node != null:
 		get_node_or_null("/root/main/Lure/").free()
-	var instance = end_line.instantiate()
-	main.add_child(instance)
-	var ball = main.find_child("Lure").find_child("bob")
+	var end_rope_instance = end_line.instantiate()
+	main.add_child(end_rope_instance)
+	var rope_instance = bob.instantiate()
+	main.add_child(rope_instance)
+	print(main.get_children())
+	print(main.get_child(3))
+	var ball = main.find_child("Lure", true, false).find_child("bob", true, false)
+	print(ball)
 	ball.global_position = player.global_position
 	ball.apply_impulse(line_2d.Velocity)
 	line_2d.make_raycast = false
