@@ -1,5 +1,4 @@
 extends RigidBody2D
-#@onready var rigid_body_2d: RigidBody2D = $"../RigidBody2D"
 @export var IndexInArray: int
 @onready var Bob: Node2D = $".."
 
@@ -10,18 +9,6 @@ var spawnPos : Vector2
 var velocity : Vector2 = Vector2(100000,-100000)
 
 func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("throw"):
-		#print(get_parent().get_parent().find_child("Player").thrown)
-		#if get_parent().get_parent().find_child("Player").thrown == 2:
-			#print("velocity")
-			#apply_impulse(velocity)
 	if event.is_action_pressed("OneTimeImpact"):
 		print("one time impact")
 		apply_impulse(velocity)
-
-#func _ready():
-	#print(velocity)
-	#apply_impulse(velocity)
-
-#func _physics_process(delta):
-	#move_and_collide(Vector2(0,0))

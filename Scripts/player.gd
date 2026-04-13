@@ -28,12 +28,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
-	if direction == 1.0:
-		animated_sprite_2d.flip_h = false
-		face = 1
-	elif direction == -1.0:
-		animated_sprite_2d.flip_h = true
-		face = -1
+	if thrown == false:
+		if direction == 1.0:
+			animated_sprite_2d.flip_h = false
+			face = 1
+		elif direction == -1.0:
+			animated_sprite_2d.flip_h = true
+			face = -1
 
 func set_for_throw():
 	var instance = bob.instantiate()
@@ -45,21 +46,20 @@ func throw():
 	line_2d.make_raycast = false
 
 func reel():
+	main.get_child(-2).get_child(2).get_child(1).set_node_b('')
+	print(main.get_child(-2).get_child(2).get_child(1).get_node_b())
 	if main.get_child(-1):
 		main.get_child(-1).queue_free()
-		#main.get_child(-1).rope_spawned = false
+		thrown = false
 
 
 func _input(event):
 	if event.is_action_pressed("throw") and thrown == false:
 		set_for_throw()
+		
 	elif Input.is_action_just_released("throw") and thrown == true:
+
 		throw()
-		print("Node a of Line PinJoint ",main.get_child(2).get_child(2).get_child(1).get_node_a())
-		print("Node b of Line PinJoint ",main.get_child(2).get_child(2).get_child(1).get_node_b())
-		print("children of the Bob node after adding all the rope segments ",main.get_child(3).get_children())
-		print("Node a of first segment PinJoint ",main.get_child(3).get_child(1).get_child(1).get_node_a())
-		print("Node b of first segment PinJoint ",main.get_child(3).get_child(1).get_child(1).get_node_b())
 	elif event.is_action_pressed("throw") and thrown == true:
+
 		reel()
-		thrown = false
