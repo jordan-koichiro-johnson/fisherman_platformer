@@ -47,7 +47,6 @@ func throw():
 
 func reel():
 	main.get_child(-2).get_child(2).get_child(1).set_node_b('')
-	print(main.get_child(-2).get_child(2).get_child(1).get_node_b())
 	if main.get_child(-1):
 		main.get_child(-1).queue_free()
 		thrown = false

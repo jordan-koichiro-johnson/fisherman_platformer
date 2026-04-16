@@ -8,7 +8,7 @@ height = 16.0
 
 [node name="RigidBody2D" type="RigidBody2D" unique_id=1185189271]
 collision_layer = 4
-mass = 10.0
+mass = 0.122
 script = ExtResource("1_0octi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1987647620]
